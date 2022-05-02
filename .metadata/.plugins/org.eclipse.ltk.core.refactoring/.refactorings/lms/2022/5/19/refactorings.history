@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.ajay.lms.dto.AddMock&apos; to &apos;AddMockDTO&apos;&#x0D;&#x0A;- Original project: &apos;lms&apos;&#x0D;&#x0A;- Original element: &apos;com.ajay.lms.dto.AddMock&apos;&#x0D;&#x0A;- Renamed element: &apos;com.ajay.lms.dto.AddMockDTO&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;AddMock&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.ajay.lms.dto{AddMock.java[AddMock" matchStrategy="1" name="AddMockDTO" qualified="false" references="true" similarDeclarations="false" stamp="1651418036496" textual="false" version="1.0"/>
+</session>

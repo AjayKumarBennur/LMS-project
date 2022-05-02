@@ -1,0 +1,46 @@
+package com.ajay.lms.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ajay.lms.pojo.Employee;
+import com.ajay.lms.pojo.MockRatings;
+import com.ajay.lms.repo.EmployeeRepo;
+
+@Service
+public class EmployeeServiceImpl implements EmployeeService{
+
+	@Autowired
+	private EmployeeRepo empRepo;
+	
+	@Override
+	public Employee addEmployee(Employee employee) {
+		Employee save = empRepo.save(employee);
+		if(save==null) {
+			throw new RuntimeException();
+		}
+		return save;
+	}
+
+	@Override
+	public List<MockRatings> getMockDetails(String name) {
+		List<Employee> findByEmpName = empRepo.findByEmpName(name);
+		List<MockRatings> ratings = findByEmpName.get(0).getRatings();
+		System.out.println("mock rating ==========> "+ratings);
+		if(ratings==null) {
+			throw new RuntimeException();
+		}
+		return ratings;
+	}
+
+//	@Override
+//	public Employee getDetails(String name) {
+//		List<Employee> empName = empRepo.findByEmpName(name);
+//		Employee employee = empName.get(0);
+//		System.out.println("=======>" +employee);
+//		return employee;
+//	}
+
+}

@@ -1,0 +1,21 @@
+package practris3;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+	@SuppressWarnings("resource")
+	public static void main(String[] args) {
+		ArrayList<Employee> arrayList = new ArrayList<Employee>();
+		System.out.println("Enter the number of records to enter");
+		Scanner scanner = new Scanner(System.in);
+		int size=scanner.nextInt();
+		for (int i = 0; i < size; i++) {
+			System.out.println("Enter the employee Id");
+			Employee employee = new Employee();
+			employee.setEmpId(scanner.next());
+			System.out.println("Enter the employee name");
+			employee.setEmpName(scanner.next());
+		}
+	}
+}

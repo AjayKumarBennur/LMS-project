@@ -1,0 +1,14 @@
+package com.ajay.lms.pojo;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public class AddBatchDto {
+	private int batchNumber;
+	private String batchName;
+	private List<Mentor> mentorId;
+	private List<Technologies> tech;
+	@Json
+	private LocalDate startDate;
+	private LocalDate endDate;
+}

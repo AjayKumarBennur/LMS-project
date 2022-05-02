@@ -1,0 +1,20 @@
+package com.ajay.lms.dto;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import com.ajay.lms.pojo.Mentor;
+import com.ajay.lms.pojo.Technologies;
+
+import lombok.Data;
+
+@Data
+public class AddMock {
+	
+	private int mockNo;
+	private List<Technologies> technologies;
+	private List<Mentor> mentors;
+	private LocalDateTime dateTime;
+	
+}

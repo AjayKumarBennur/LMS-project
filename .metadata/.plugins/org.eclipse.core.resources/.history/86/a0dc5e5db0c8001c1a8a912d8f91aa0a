@@ -1,0 +1,21 @@
+package com.ajay.lms.service;
+
+import java.util.List;
+
+import com.ajay.lms.pojo.Employee;
+import com.ajay.lms.pojo.Mock;
+import com.ajay.lms.pojo.MockRatings;
+
+public interface MentorService {
+	
+	public List<Employee> getAllEmployee(String batchName);
+
+	public List<MockRatings> getEmployeeDetails(String name);
+
+	public Mock createMock(Mock mock);
+
+	public MockRatings giveMockRatings(MockRatings ratings);
+
+	public List<String> getBatchNameByMentor(String mentorName);
+	
+}

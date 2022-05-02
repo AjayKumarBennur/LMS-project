@@ -1,0 +1,27 @@
+package pra;
+
+import java.util.ArrayList;
+
+public class Main {
+	public static void main(String[] args) {
+		int[] a= {4,6,8};
+		int min=0;
+		int temp=0;
+		for (int i = 0; i < a.length; i++) {
+			ArrayList<Integer> arrayList = new ArrayList<Integer>();
+			for (int j = 1; j < a.length; j++) {
+				arrayList.add(a[i]+a[j]);
+			}
+			for (Integer integer : arrayList) {
+				temp+=integer;
+			}
+			if (min==0) {
+				min=temp;
+			}
+			if(temp<min) {
+				min=temp;
+			}
+		}
+		System.out.println(min);
+	}
+}

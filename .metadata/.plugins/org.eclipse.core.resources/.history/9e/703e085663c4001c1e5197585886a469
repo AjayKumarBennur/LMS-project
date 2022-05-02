@@ -1,0 +1,19 @@
+package com.ajay.lms.service;
+
+import com.ajay.lms.pojo.Employee;
+import com.ajay.lms.repo.EmployeeRepo;
+
+public class EmployeeServiceImpl implements EmployeeService{
+
+	private EmployeeRepo empRepo;
+	
+	@Override
+	public Employee addEmployee(Employee employee) {
+		Employee save = empRepo.save(employee);
+		if(save==null) {
+			throw new RuntimeException();
+		}
+		return save;
+	}
+
+}

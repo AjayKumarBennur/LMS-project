@@ -1,0 +1,10 @@
+package com.ajay.lms.pojo;
+
+@lombok.Data
+public class ResponseBody {
+	
+	private boolean error;
+	private String status;
+	private Object data;
+	
+}

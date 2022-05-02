@@ -1,0 +1,26 @@
+package com.ajay.lms;
+
+import java.util.ArrayList;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.ajay.lms.pojo.BatchDetails;
+import com.ajay.lms.pojo.Technologies;
+
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+@SpringBootApplication
+@EnableSwagger2
+public class LmsApplication {
+
+	public static <E> void main(String[] args) {
+		SpringApplication.run(LmsApplication.class, args);
+		
+		BatchDetails batchDetails = new BatchDetails();
+	}
+	
+		
+	
+
+}

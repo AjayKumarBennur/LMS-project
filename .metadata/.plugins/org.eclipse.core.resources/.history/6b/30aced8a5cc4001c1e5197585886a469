@@ -1,0 +1,5 @@
+package com.ajay.lms.repo;
+
+public interface EmployeeRepo {
+
+}

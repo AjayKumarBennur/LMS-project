@@ -1,0 +1,8 @@
+package com.ajay.lms.service;
+
+import com.ajay.lms.pojo.BatchDetails;
+
+public interface AdminService {
+	
+	public BatchDetails addBatch(BatchDetails details);
+}

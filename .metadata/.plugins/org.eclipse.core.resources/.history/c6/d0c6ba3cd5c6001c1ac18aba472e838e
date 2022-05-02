@@ -1,0 +1,5 @@
+package com.ajay.emailprogram.service;
+
+public class EmailServiceImpl implements EmailService{
+
+}

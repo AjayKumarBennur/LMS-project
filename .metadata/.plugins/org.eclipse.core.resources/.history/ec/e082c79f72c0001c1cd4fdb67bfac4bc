@@ -1,0 +1,16 @@
+package com.ajay.lms.pojo;
+
+public enum Technologies {
+	JAVA("Java"), PYTHON("Python"), CSHARP("C#");
+
+	private final String tech;
+
+	Technologies(String tech) {
+		this.tech = tech;
+	}
+
+	public String getTech() {
+		return tech;
+	}
+	
+}

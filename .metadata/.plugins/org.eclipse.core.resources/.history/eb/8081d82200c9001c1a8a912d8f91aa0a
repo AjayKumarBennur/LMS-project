@@ -1,0 +1,116 @@
+package com.ajay.lms.service;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import javax.management.RuntimeErrorException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ajay.lms.dto.DropDownResponse;
+import com.ajay.lms.dto.EmployeeStatusDTO;
+import com.ajay.lms.pojo.BatchDetails;
+import com.ajay.lms.pojo.Employee;
+import com.ajay.lms.pojo.Mentor;
+import com.ajay.lms.pojo.Mock;
+import com.ajay.lms.pojo.MockRatings;
+import com.ajay.lms.pojo.Technologies;
+import com.ajay.lms.repo.BatchDetailsRepo;
+import com.ajay.lms.repo.EmployeeRepo;
+import com.ajay.lms.repo.MentorRepo;
+import com.ajay.lms.repo.MockRatingsRepo;
+import com.ajay.lms.repo.MockRepo;
+
+@Service
+public class MetnorServiceImpl implements MentorService {
+
+	@Autowired
+	private EmployeeRepo empRepo;
+
+	@Autowired
+	private MentorRepo mentorRepo;
+
+	@Autowired
+	private BatchDetailsRepo batchDetailsRepo;
+
+	@Autowired
+	private MockRepo mockRepo;
+
+	@Autowired
+	private MockRatingsRepo mockRatingsRepo;
+
+	@Override
+	public List<Employee> getAllEmployee(String batchName) {
+		System.out.println("id---------------->" + batchDetailsRepo.findIdByBatchName(batchName));
+		BatchDetails batch = batchDetailsRepo.findIdByBatchName(batchName);
+		if (batch == null) {
+			throw new RuntimeException();
+		}
+		return batch.getEmployees();
+	}
+
+	@Override
+	public List<MockRatings> getEmployeeDetails(String empId) {
+		Employee empDetails = empRepo.findByEmpId(empId);
+		if (empDetails == null) {
+			throw new RuntimeException("Emp id doesnot exist");
+		}
+		if (empDetails.getRatings().size() < 1) {
+			throw new RuntimeException("No Ratings for empId");
+		}
+		return empDetails.getRatings();
+	}
+
+	@Override
+	public Mock createMock(Mock mock) {
+		Mock save = mockRepo.save(mock);
+		if (save == null) {
+			throw new RuntimeException();
+		}
+		return save;
+
+	}
+
+	@Override
+	public MockRatings giveMockRatings(MockRatings ratings) {
+		MockRatings mockRatings = mockRatingsRepo.save(ratings);
+		if (mockRatings == null) {
+			throw new RuntimeException();
+		}
+		return mockRatings;
+	}
+
+	@Override
+	public List<DropDownResponse> getBatchNameByMentor(String mentorId) {
+		Mentor mentor = mentorRepo.findByEmpId(mentorId);
+		List<BatchDetails> batchDetails = mentor.getBatchDetails();
+		List<DropDownResponse> dropDown = new ArrayList<>();
+		DropDownResponse response = new DropDownResponse();
+		batchDetails.stream().forEach(b -> {
+			response.setId(b.getId());
+			response.setName(b.getBatchName());
+			dropDown.add(response);
+		});
+		if (dropDown.size() < 1) {
+			throw new RuntimeException();
+		}
+		return dropDown;
+	}
+
+	@Override
+	public List<EmployeeStatusDTO> getstatus(Integer batchId) {
+		BatchDetails batchDetails = batchDetailsRepo.findById(batchId).get();
+		List<Employee> employees = batchDetails.getEmployees();
+		EmployeeStatusDTO employeeStatusDTO = new EmployeeStatusDTO();
+		employees.stream().forEach(e -> {
+						employeeStatusDTO.setEmpId(e.getId());
+						employeeStatusDTO.setEmpName(e.getEmpName());
+						employeeStatusDTO.setMocksTaken(e.getRatings().size());
+						employeeStatusDTO.set)
+					});
+	}
+
+}

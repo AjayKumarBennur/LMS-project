@@ -1,0 +1,8 @@
+package com.ajay.lms.pojo;
+
+public class ResponseBody {
+	
+	private boolean error;
+	private Object Data;
+	
+}

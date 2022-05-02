@@ -1,0 +1,9 @@
+package com.ajay.lms.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.ajay.lms.pojo.BatchDetails;
+
+public interface AdminRepo extends JpaRepository<BatchDetails, Integer>{
+
+}

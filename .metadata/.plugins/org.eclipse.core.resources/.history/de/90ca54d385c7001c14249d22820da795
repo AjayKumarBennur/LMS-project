@@ -1,0 +1,87 @@
+package com.ajay.lms.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ajay.lms.pojo.BatchDetails;
+import com.ajay.lms.pojo.Mentor;
+import com.ajay.lms.repo.BatchDetailsRepo;
+import com.ajay.lms.repo.MentorRepo;
+import com.ajay.lms.repo.TechnologiesRepo;
+
+@Service
+public class AdminServiceImpl implements AdminService {
+
+	@Autowired
+	private BatchDetailsRepo batchRepo;
+	
+	@Autowired
+	private MentorRepo mentorRepo;
+	
+	@Autowired
+	private TechnologiesRepo technologiesRepo;
+	/*
+	 * {
+  "number": 2,
+  "batchName": "April",
+  "mentor":{
+     "mentorName":"Shanthu"
+   },
+  "technologies": [
+    {
+      "tech": "React"
+    }
+  ],
+  "startDate": "20/12/2022",
+  "endDate": "12/01/2023",
+  "status":"Yet to start"
+}
+	 */
+
+	@Override
+	public BatchDetails addBatch(BatchDetails details) {
+		Mentor mentorDetails = mentorRepo.findByEmpId(details.getMentor().getEmpId());
+		
+		return null;
+	}
+
+	@Override
+	public BatchDetails update(BatchDetails details,int id) {
+		BatchDetails existing = batchRepo.findById(id).get();
+		if(existing==null) {
+			throw new RuntimeException();
+		}
+		existing.setBatchName(details.getBatchName());
+		existing.setEndDate(details.getEndDate());
+		existing.setMentor(details.getMentor());
+		existing.setStatus(details.getStatus());
+		existing.setTechnologies(details.getTechnologies());
+		return existing;
+	}
+
+	@Override
+	public void delete(Integer id) {
+		batchRepo.deleteById(id);
+	}
+
+	@Override
+	public Mentor addMentor(Mentor mentor) {
+		Mentor save = mentorRepo.save(mentor);
+		if(save==null) {
+			throw new RuntimeException();
+		}
+		return save;
+	}
+
+	@Override
+	public List<BatchDetails> getAllBatchDetails() {
+		List<BatchDetails> findAll = batchRepo.findAll();
+		if(findAll==null) {
+			throw new RuntimeException();
+		}
+		return findAll;
+	}
+
+}

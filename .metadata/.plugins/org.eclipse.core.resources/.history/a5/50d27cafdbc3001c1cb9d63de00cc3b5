@@ -1,0 +1,33 @@
+package pra;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+	public static void main(String[] args) {
+		int[] a= {4,6,8};
+		LinkedList<Integer> list = Arrays.asList(a);
+//		int[] b=new int[a.length];
+//		int min=0;
+//		int temp=0;
+//		for (int i = 0; i < a.length; i++) {
+//			ArrayList<Integer> arrayList = new ArrayList<Integer>();
+//			for (int j = 1; j < a.length; j++) {
+//				arrayList.add(a[i]+a[j]);
+//				
+//			}
+//			for (Integer integer : arrayList) {
+//				temp+=integer;
+//			}
+//			if (min==0) {
+//				min=temp;
+//			}
+//			if(temp<min) {
+//				min=temp;
+//			}
+//		}
+//		System.out.println(min);
+	}
+}

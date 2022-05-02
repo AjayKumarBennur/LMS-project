@@ -1,0 +1,40 @@
+package com.ajay.lms.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ajay.lms.pojo.BatchDetails;
+import com.ajay.lms.service.AdminService;
+
+@RestController
+@RequestMapping("/lms/admin/api")
+public class AdminController {
+	
+	@Autowired
+	AdminService service;
+	
+	@PostMapping("/batch")
+	public ResponseEntity<?> addBatch(@RequestBody BatchDetails details) {
+		if(details == null) {
+			throw new RuntimeException();
+		}
+		BatchDetails addBatch = service.addBatch(details);
+		return new ResponseEntity<>(addBatch, HttpStatus.OK);
+	}
+	
+	@PutMapping("/batch/{id}")
+	public ResponseEntity<?> updateBatch(@RequestBody BatchDetails details,@PathVariable int id) {
+		if (id==0) {
+			throw new RuntimeException();
+		}
+		return new ResponseEntity<>(service.update(details,id),HttpStatus.OK);
+		
+	}
+}

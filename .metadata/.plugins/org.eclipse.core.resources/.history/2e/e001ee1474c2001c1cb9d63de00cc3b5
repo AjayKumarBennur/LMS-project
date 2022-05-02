@@ -1,0 +1,47 @@
+package com.ajay.lms.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ajay.lms.pojo.BatchDetails;
+import com.ajay.lms.pojo.Mentor;
+import com.ajay.lms.repo.AdminRepo;
+import com.ajay.lms.repo.BatchDetailsRepo;
+import com.ajay.lms.repo.MentorRepo;
+
+@Service
+public class AdminServiceImpl implements AdminService {
+
+	@Autowired
+	private BatchDetailsRepo batchRepo;
+	
+	@Autowired
+	private MentorRepo mentorRepo;
+	
+
+	@Override
+	public BatchDetails addBatch(BatchDetails details) {
+		return batchRepo.save(details);
+	}
+
+	@Override
+	public BatchDetails update(BatchDetails details,int id) {
+		BatchDetails existing = batchRepo.findById(id).get();
+		return null;
+		
+	}
+
+	@Override
+	public void delete(Integer id) {
+		batchRepo.deleteById(id);
+	}
+
+	@Override
+	public Mentor addMentor(Mentor mentor) {
+		
+		return null;
+	}
+
+}

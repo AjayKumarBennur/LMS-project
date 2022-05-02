@@ -1,0 +1,13 @@
+package com.ajay.lms.pojo;
+
+import java.time.LocalDateTime;
+
+public class Mock {
+	
+	private int id;
+	private int mockNo;
+	private Technologies tech;
+	private Mentor panel;
+	private LocalDateTime date;
+	
+}

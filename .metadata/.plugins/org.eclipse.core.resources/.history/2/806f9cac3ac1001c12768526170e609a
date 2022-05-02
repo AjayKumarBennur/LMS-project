@@ -1,0 +1,36 @@
+package com.ajay.lms.pojo;
+
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import lombok.Data;
+
+@Data
+@Entity
+public class BatchDetails {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int bId;
+	private int number;
+	private String batchName;
+	private String mentorName;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Technologies> technologies;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate startDate;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate endDate;
+	private String status;
+	
+}

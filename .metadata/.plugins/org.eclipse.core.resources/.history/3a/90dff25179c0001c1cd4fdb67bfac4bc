@@ -1,0 +1,22 @@
+package com.ajay.lms.pojo;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.ManyToAny;
+
+import lombok.Data;
+
+@Entity
+@Data
+public class Technologies {
+	@Id
+	int id;
+	String tech;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id")
+	BatchDetails details;
+}

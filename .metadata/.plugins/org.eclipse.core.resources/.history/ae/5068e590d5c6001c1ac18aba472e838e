@@ -1,0 +1,7 @@
+package com.ajay.emailprogram.service;
+
+public interface EmailService {
+	
+	public void sendMail();
+	
+}
