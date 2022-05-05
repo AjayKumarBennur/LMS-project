@@ -54,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		empDetails.setBloodGroup(employee.getBloodGroup());
 		empDetails.setContact(employee.getContact());
 		empDetails.setDesignation(employee.getDesignation());
-		empDetails.setDetails(employee.getDetails());
+		empDetails.setEducationDetails(employee.getEducationDetails());
 		empDetails.setDob(employee.getDob());
 		empDetails.setDoj(employee.getDoj());
 		empDetails.setEmail(employee.getEmail());

@@ -9,5 +9,5 @@ public class AddMentorDTO {
 	private String name;
 	private String empId;
 	private String emailId;
-	private List<Integer> techId; 
+	private List<Integer> techId;
 }

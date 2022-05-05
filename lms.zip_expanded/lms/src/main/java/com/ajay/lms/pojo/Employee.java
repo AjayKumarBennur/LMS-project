@@ -46,7 +46,7 @@ public class Employee {
 	private SecondaryInfo info;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<EducationDetails> details;
+	private List<EducationDetails> educationDetails;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Address> address;

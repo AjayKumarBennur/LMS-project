@@ -1,0 +1,16 @@
+package com.ajay.lms.dto;
+
+import java.util.List;
+
+public class AddMockRatingsDTO {
+	
+	private String mockType;
+	private String mockTakenBy;
+	private Integer techId;
+	private double practical;
+	private double theoretical;
+	private double overall;
+	private String detailedFeedBack;
+	
+	
+}

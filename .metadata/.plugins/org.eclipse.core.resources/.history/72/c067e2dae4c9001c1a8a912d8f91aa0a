@@ -1,0 +1,9 @@
+package com.ajay.lms.dto;
+
+public class AddMockRatingsDTO {
+
+	private String mockType;
+	private int techId;
+	
+	
+}

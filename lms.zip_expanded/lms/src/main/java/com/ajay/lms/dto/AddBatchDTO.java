@@ -13,14 +13,12 @@ import lombok.Data;
 @Data
 public class AddBatchDTO {
 	@NotNull
-	@NotEmpty
 	private int batchNumber;
 	@NotNull
 	@NotEmpty
 	private String batchName;
 	@NotNull
-	@NotEmpty
-	private String mentorId;
+	private Integer mentorId;
 	@NotNull
 	private List<Integer> techId;
 	@JsonFormat(pattern = "yyyy/MM/dd")

@@ -13,16 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ajay.lms.dto.AddMockDTO;
-import com.ajay.lms.dto.DropDownResponse;
+import com.ajay.lms.dto.AddMockRatingsDTO;
+import com.ajay.lms.dto.DropDownDTO;
 import com.ajay.lms.dto.EmployeeStatusDTO;
-import com.ajay.lms.dto.ResponseBody;
+import com.ajay.lms.dto.ResponseDTO;
 import com.ajay.lms.pojo.Mock;
 import com.ajay.lms.pojo.MockRatings;
 import com.ajay.lms.service.MentorService;
 
-import lombok.extern.log4j.Log4j2;
-
-@Log4j2
 @RestController
 @RequestMapping("/api/mentor")
 public class MentorController {
@@ -32,36 +30,35 @@ public class MentorController {
 
 	
 	@GetMapping("/batchname/{mentorId}")
-	public ResponseEntity<ResponseBody> getBatchName(@PathVariable String mentorId){
-		List<DropDownResponse> batchname = service.getBatchNameByMentor(mentorId);
-		return new ResponseEntity<>(new ResponseBody(false, "Batch Name of mentor fetched successfully", batchname), HttpStatus.OK);
+	public ResponseEntity<ResponseDTO> getBatchName(@PathVariable String mentorId){
+		List<DropDownDTO> batchname = service.getBatchNameByMentor(mentorId);
+		return new ResponseEntity<>(new ResponseDTO(false, "Batch Name of mentor fetched successfully", batchname), HttpStatus.OK);
 	}
 	
 	@GetMapping("/batchdetails/{batchId}")
-	public ResponseEntity<ResponseBody> getBatchDetailsOfMentor(@PathVariable Integer batchId){
+	public ResponseEntity<ResponseDTO> getBatchDetailsOfMentor(@PathVariable Integer batchId){
 		List<EmployeeStatusDTO> getstatus = service.getstatus(batchId);
-		return new ResponseEntity<>(new ResponseBody(false, "Employee Details of batch fetched successfully", getstatus),HttpStatus.OK);
+		return new ResponseEntity<>(new ResponseDTO(false, "Employee Details of batch fetched successfully", getstatus),HttpStatus.OK);
 	}
 	
 	
 	
 	@GetMapping("/employeeDetails/{empId}")
-	public ResponseEntity<ResponseBody> getDetailsOfEmployee(@PathVariable String empId){
-		log.info("employeeeeeeeee" , empId);
+	public ResponseEntity<ResponseDTO> getDetailsOfEmployee(@PathVariable String empId){
 		List<MockRatings> details = service.getEmployeeDetails(empId);
-		return new ResponseEntity<>(new ResponseBody(false, "Mock Rating of a employee", details),HttpStatus.OK);
+		return new ResponseEntity<>(new ResponseDTO(false, "Mock Rating of a employee", details),HttpStatus.OK);
 		
 	}
 	
 	@PostMapping("/mock")
-	public ResponseEntity<ResponseBody> addMock(@RequestBody AddMockDTO mock){
+	public ResponseEntity<ResponseDTO> addMock(@RequestBody AddMockDTO mock){
 		Mock createMock = service.createMock(mock);
-        return	new ResponseEntity<>(new ResponseBody(false, "Mock created", createMock), HttpStatus.OK);
+        return	new ResponseEntity<>(new ResponseDTO(false, "Mock created", createMock), HttpStatus.OK);
 	}
 
 	@PostMapping("/mockRatings")
-	public ResponseEntity<ResponseBody> giveMockRatings(@RequestBody MockRatings ratings){
+	public ResponseEntity<ResponseDTO> giveMockRatings(@RequestBody AddMockRatingsDTO ratings){
 		MockRatings giveMockRatings = service.giveMockRatings(ratings);
-		return new ResponseEntity<>(new ResponseBody(false, "Mock Ratings submitted", giveMockRatings),HttpStatus.OK);
+		return new ResponseEntity<>(new ResponseDTO(false, "Mock Ratings submitted", giveMockRatings),HttpStatus.OK);
 	}
 }

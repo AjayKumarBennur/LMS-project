@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ajay.lms.dto.AddBatchDTO;
 import com.ajay.lms.dto.AddMentorDTO;
-import com.ajay.lms.dto.ResponseBody;
+import com.ajay.lms.dto.DropDownDTO;
+import com.ajay.lms.dto.ResponseDTO;
 import com.ajay.lms.pojo.BatchDetails;
 import com.ajay.lms.pojo.Mentor;
 import com.ajay.lms.pojo.Technologies;
@@ -32,49 +33,54 @@ public class AdminController {
 	AdminService service;
 	
 	@PostMapping("/batch")
-	public ResponseEntity<ResponseBody> addBatch(@RequestBody AddBatchDTO details) {
+	public ResponseEntity<ResponseDTO> addBatch(@RequestBody AddBatchDTO details) {
 		BatchDetails addBatch = service.addBatch(details);
-		return new ResponseEntity<>(new ResponseBody(false, "Success", addBatch), HttpStatus.OK);
+		return new ResponseEntity<>(new ResponseDTO(false, "Success", addBatch), HttpStatus.OK);
 	}
 	
 	@PutMapping("/batch/{id}")
-	public ResponseEntity<ResponseBody> updateBatch(@RequestBody BatchDetails details,@PathVariable Integer id) {
-		return new ResponseEntity<>(new ResponseBody(false, "Success",service.update(details, id)),HttpStatus.OK);
+	public ResponseEntity<ResponseDTO> updateBatch(@RequestBody BatchDetails details,@PathVariable Integer id) {
+		return new ResponseEntity<>(new ResponseDTO(false, "Success",service.update(details, id)),HttpStatus.OK);
 	}
 	
 	
 	@DeleteMapping("/batch/{id}")
-	public ResponseEntity<ResponseBody> delete(@PathVariable Integer id) {
+	public ResponseEntity<ResponseDTO> delete(@PathVariable Integer id) {
 		if(id==null) {
 			throw new RuntimeException();
 		}
-		return new ResponseEntity<>(new ResponseBody(false, "Deleted the batch successfully", null),HttpStatus.OK);
+		return new ResponseEntity<>(new ResponseDTO(false, "Deleted the batch successfully", null),HttpStatus.OK);
 	}
 	
 	@PostMapping("/mentor")
-	public ResponseEntity<ResponseBody> addMentor(@RequestBody AddMentorDTO mentorDetails){
+	public ResponseEntity<ResponseDTO> addMentor(@RequestBody AddMentorDTO mentorDetails){
 		Mentor addMentor = service.addMentor(mentorDetails);
-		ResponseBody body = new ResponseBody(false, "Add mentor Successfully", addMentor);
-		return new ResponseEntity<ResponseBody>(body, HttpStatus.OK);
+		ResponseDTO body = new ResponseDTO(false, "Add mentor Successfully", addMentor);
+		return new ResponseEntity<ResponseDTO>(body, HttpStatus.OK);
 	}
 	
 	@GetMapping("/batch")
-	public ResponseEntity<ResponseBody> getAllBatchDetails(){
+	public ResponseEntity<ResponseDTO> getAllBatchDetails(){
 		List<BatchDetails> allBatchDetails = service.getAllBatchDetails();
-		return new ResponseEntity<>(new ResponseBody(false, "All batch details fetched Successfully", allBatchDetails),HttpStatus.OK);
+		return new ResponseEntity<>(new ResponseDTO(false, "All batch details fetched Successfully", allBatchDetails),HttpStatus.OK);
 	}
 	
 	@GetMapping("/mentor")
-	public ResponseEntity<ResponseBody> getAllMentorDetails(){
+	public ResponseEntity<ResponseDTO> getAllMentorDetails(){
 		List<Mentor> allMentorDetails = service.getAllMentorDetails();
-		return new ResponseEntity<>(new ResponseBody(false, "All metnor Details fetched Successfully", allMentorDetails),HttpStatus.OK);
+		return new ResponseEntity<>(new ResponseDTO(false, "All metnor Details fetched Successfully", allMentorDetails),HttpStatus.OK);
 	}
 	
 	@GetMapping("/technologies")
-	public ResponseEntity<ResponseBody> getAllTechnologies(){
+	public ResponseEntity<ResponseDTO> getAllTechnologies(){
 		List<Technologies> allTechnologies = service.getAllTechnologies();
-		return new ResponseEntity<>(new ResponseBody(false, "All technologies fetched Succesfully", allTechnologies), HttpStatus.OK);
+		return new ResponseEntity<>(new ResponseDTO(false, "All technologies fetched Succesfully", allTechnologies), HttpStatus.OK);
 	}
 	
+	@GetMapping("/mentorname")
+	public ResponseEntity<ResponseDTO> getMentorDropDown(){
+		List<DropDownDTO> mentorName = service.getMentorName();
+		return new ResponseEntity<>(new ResponseDTO(false, "All mentor name successfully fetched", mentorName),HttpStatus.OK);
+	}
 	
 }

@@ -26,7 +26,6 @@ public class MockRatings {
 	private int overAll;
 	private String detailedFeedBack;
 	@ManyToOne
-	@JsonIgnore
 	private Employee employee;
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ajay.lms.dto.AddBatchDTO;
 import com.ajay.lms.dto.AddMentorDTO;
+import com.ajay.lms.dto.DropDownDTO;
 import com.ajay.lms.pojo.BatchDetails;
 import com.ajay.lms.pojo.Mentor;
 import com.ajay.lms.pojo.Technologies;
@@ -23,5 +24,7 @@ public interface AdminService {
 	public List<Mentor> getAllMentorDetails();
 
 	public List<Technologies> getAllTechnologies();
+
+	public List<DropDownDTO> getMentorName();
 	
 }
