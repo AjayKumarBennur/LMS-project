@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
@@ -30,13 +31,13 @@ public class Employee {
 	@Column(unique = true)
 	private String empId;
 	private String empName;
-	@JsonFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "yyyy/MM/dd")
 	private LocalDate doj;
-	@JsonFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern ="yyyy/MM/dd")
 	private LocalDate dob;
 	private String email;
 	private String bloodGroup;
-	private String designation;
+	private String designation; 	
 	private String gender;
 	private String nationality;
 	private String status;
@@ -54,7 +55,7 @@ public class Employee {
 	@OneToOne(cascade = CascadeType.ALL)
 	private BankDetails bankDetails;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	private List<Technologies> tech;
 	
 	@OneToMany(cascade = CascadeType.ALL)
@@ -64,6 +65,9 @@ public class Employee {
 	private List<Contact> contact;
 	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "employee")
+	@JsonManagedReference
 	private List<MockRatings> ratings;
+	
+	
 	
 }

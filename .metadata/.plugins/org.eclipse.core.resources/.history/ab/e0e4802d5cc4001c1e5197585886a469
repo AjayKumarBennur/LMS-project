@@ -1,5 +1,0 @@
-package com.ajay.lms.service;
-
-public interface MentorService {
-
-}

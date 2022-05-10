@@ -1,0 +1,17 @@
+package com.ajay.lms.service;
+
+import org.apache.logging.log4j.message.SimpleMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+
+public class EmailService {
+
+	@Autowired
+	MailSender mailSender;
+	
+	
+	public sendPassword(String to, String subject,String text) {
+		SimpleMessage simpleMessage = new SimpleMessage();
+		
+	}
+}

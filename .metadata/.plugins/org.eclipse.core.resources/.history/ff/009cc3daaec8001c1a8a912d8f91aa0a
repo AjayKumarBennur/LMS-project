@@ -1,9 +1,0 @@
-package com.ajay.lms.repo;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.ajay.lms.pojo.Mentor;
-
-public interface MentorRepo extends JpaRepository<Mentor, Integer>{
-	public Mentor findByEmpId(String empId);
-}

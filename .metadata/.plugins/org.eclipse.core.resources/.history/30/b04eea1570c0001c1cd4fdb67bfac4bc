@@ -1,8 +1,0 @@
-package com.ajay.lms.pojo;
-
-public enum Technologies {
-	JAVA, PYTHON, CSHARP
-	Technologies(String tech) {
-		
-	}
-}

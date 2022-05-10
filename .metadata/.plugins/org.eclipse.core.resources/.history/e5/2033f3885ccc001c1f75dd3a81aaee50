@@ -1,0 +1,17 @@
+package com.ajay.lms.dto;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public class MentorBatchResDto {
+
+	private Integer batchNo;
+	private Integer batchId;
+	private String batchName;
+	private List<String> technologies;
+	private LocalDate startDate;
+	private LocalDate endDate;
+	private String status;
+	private Integer batchStrength;
+	
+}

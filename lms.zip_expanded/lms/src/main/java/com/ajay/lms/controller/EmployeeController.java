@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ajay.lms.dto.AddEmployeeDTO;
 import com.ajay.lms.dto.ResponseDTO;
 import com.ajay.lms.pojo.Employee;
 import com.ajay.lms.pojo.MockRatings;
@@ -30,9 +31,9 @@ public class EmployeeController {
 	 * EMployee Registration
 	 */
 	@PostMapping("/")
-	public ResponseEntity<ResponseDTO> register(@RequestBody Employee employee) {
+	public ResponseEntity<ResponseDTO> register(@RequestBody AddEmployeeDTO employee) {
 		 Employee addEmployee = service.addEmployee(employee);
-		 return new ResponseEntity<ResponseDTO>(new ResponseDTO(false, "Success", addEmployee), HttpStatus.OK);
+		 return new ResponseEntity<ResponseDTO>(new ResponseDTO(false, "Successfully registered employee", addEmployee), HttpStatus.OK);
 	}
 	
 	

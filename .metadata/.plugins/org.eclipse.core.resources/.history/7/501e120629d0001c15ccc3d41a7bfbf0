@@ -1,0 +1,5 @@
+package com.ajay.emailprogram.controller;
+
+public class EmailController {
+
+}

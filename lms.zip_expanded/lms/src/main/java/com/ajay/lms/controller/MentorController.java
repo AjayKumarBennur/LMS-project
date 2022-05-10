@@ -16,6 +16,7 @@ import com.ajay.lms.dto.AddMockDTO;
 import com.ajay.lms.dto.AddMockRatingsDTO;
 import com.ajay.lms.dto.DropDownDTO;
 import com.ajay.lms.dto.EmployeeStatusDTO;
+import com.ajay.lms.dto.MentorBatchResDto;
 import com.ajay.lms.dto.ResponseDTO;
 import com.ajay.lms.pojo.Mock;
 import com.ajay.lms.pojo.MockRatings;
@@ -38,7 +39,7 @@ public class MentorController {
 	@GetMapping("/batchdetails/{batchId}")
 	public ResponseEntity<ResponseDTO> getBatchDetailsOfMentor(@PathVariable Integer batchId){
 		List<EmployeeStatusDTO> getstatus = service.getstatus(batchId);
-		return new ResponseEntity<>(new ResponseDTO(false, "Employee Details of batch fetched successfully", getstatus),HttpStatus.OK);
+		return new ResponseEntity<>(new ResponseDTO(false, "Employee Details of batch fetched successfully for dashboard drop down", getstatus),HttpStatus.OK);
 	}
 	
 	
@@ -60,5 +61,11 @@ public class MentorController {
 	public ResponseEntity<ResponseDTO> giveMockRatings(@RequestBody AddMockRatingsDTO ratings){
 		MockRatings giveMockRatings = service.giveMockRatings(ratings);
 		return new ResponseEntity<>(new ResponseDTO(false, "Mock Ratings submitted", giveMockRatings),HttpStatus.OK);
+	}
+	
+	@GetMapping("/mentorbatch/{mentorId}")
+	public ResponseEntity<ResponseDTO> getAllBatchs(@PathVariable Integer mentorId){
+		List<MentorBatchResDto> allBatch = service.getAllBatch(mentorId);
+		return new ResponseEntity<ResponseDTO>(new ResponseDTO(false, "Mentor Batch Details feteched successfully", allBatch), HttpStatus.OK);
 	}
 }

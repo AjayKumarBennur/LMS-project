@@ -1,0 +1,13 @@
+package com.ajay.lms.dto;
+
+import java.util.List;
+
+import com.ajay.lms.pojo.Employee;
+
+public class RequsetApproveDTO {
+	
+	private String batchName;
+	private int batchId;
+	private List<Employee> employees;
+
+}

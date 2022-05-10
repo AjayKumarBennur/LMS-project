@@ -18,8 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ajay.lms.dto.AddBatchDTO;
 import com.ajay.lms.dto.AddMentorDTO;
 import com.ajay.lms.dto.DropDownDTO;
+import com.ajay.lms.dto.EmpRequestResDTO;
+import com.ajay.lms.dto.RejectDTO;
+import com.ajay.lms.dto.RequestApproveDTO;
 import com.ajay.lms.dto.ResponseDTO;
 import com.ajay.lms.pojo.BatchDetails;
+import com.ajay.lms.pojo.Employee;
+import com.ajay.lms.pojo.EmployeeRequest;
 import com.ajay.lms.pojo.Mentor;
 import com.ajay.lms.pojo.Technologies;
 import com.ajay.lms.service.AdminService;
@@ -83,4 +88,32 @@ public class AdminController {
 		return new ResponseEntity<>(new ResponseDTO(false, "All mentor name successfully fetched", mentorName),HttpStatus.OK);
 	}
 	
+	@GetMapping("/request")
+	public ResponseEntity<ResponseDTO> getRequestList(){
+		List<EmpRequestResDTO> empRequest = service.getEmpRequest();
+		return new ResponseEntity<>(new ResponseDTO(false, "Fetched all employee request", empRequest), HttpStatus.OK);
+	}
+	
+	@PostMapping("/approve")
+	public ResponseEntity<ResponseDTO> approveRequest(RequestApproveDTO approve){
+		List<Employee> approveRequest = service.approveRequest(approve);
+		return new ResponseEntity<>(new ResponseDTO(false, "Successfully added employees to batch", approveRequest), HttpStatus.OK);
+	}
+	
+	
+	@PostMapping("/reject")
+	public ResponseEntity<ResponseDTO> rejectRequest(@RequestBody RejectDTO reject){
+		List<EmployeeRequest> request = service.rejectRequest(reject);
+		return new ResponseEntity<>(new ResponseDTO(false, "Rejected the request", request), HttpStatus.OK);
+		
+	}
+	
+	@DeleteMapping("/mentor")
+	public ResponseEntity<ResponseDTO> deleteMentor(@PathVariable Integer id){
+		if(id==null) {
+			throw new RuntimeException("Id is null");
+		}
+		Mentor deleteMentor = service.deleteMentor(id);
+		return new ResponseEntity<>(new ResponseDTO(false, "Mentor deleted successfully", deleteMentor),HttpStatus.OK);	
+	}
 }

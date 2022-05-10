@@ -20,8 +20,7 @@ public class EducationDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String educationType;
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate date;
+	private int yop;
 	private double percentage;
 	private String universityName;
 	private String instituteName;

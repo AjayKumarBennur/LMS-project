@@ -21,9 +21,9 @@ public class Experience {
 	private int id;
 	private String companyName;
 	private int eop;
-	@JsonFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "yyyy/MM/dd")
 	private LocalDate doj;
-	@JsonFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "yyyy/MM/dd")
 	private LocalDate dor;
 	private String designation;
 	private String location;

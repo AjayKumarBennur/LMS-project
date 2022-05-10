@@ -1,9 +1,0 @@
-package com.ajay.lms.service;
-
-import com.ajay.lms.pojo.Employee;
-
-public interface EmployeeService {
-	
-	public Employee addEmployee(Employee employee);
-	
-}

@@ -1,5 +1,0 @@
-package com.ajay.lms.repo;
-
-public class MockRatingsRepo {
-
-}

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
@@ -26,6 +27,7 @@ public class MockRatings {
 	private int overAll;
 	private String detailedFeedBack;
 	@ManyToOne
+	@JsonBackReference
 	private Employee employee;
 
 }

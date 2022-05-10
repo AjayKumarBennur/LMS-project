@@ -11,6 +11,7 @@ import com.ajay.lms.dto.AddMockDTO;
 import com.ajay.lms.dto.AddMockRatingsDTO;
 import com.ajay.lms.dto.DropDownDTO;
 import com.ajay.lms.dto.EmployeeStatusDTO;
+import com.ajay.lms.dto.MentorBatchResDto;
 import com.ajay.lms.pojo.BatchDetails;
 import com.ajay.lms.pojo.Employee;
 import com.ajay.lms.pojo.Mentor;
@@ -26,7 +27,6 @@ import com.ajay.lms.repo.TechnologiesRepo;
 
 import lombok.extern.log4j.Log4j2;
 
-@Log4j2
 @Service
 public class MetnorServiceImpl implements MentorService {
 
@@ -80,7 +80,6 @@ public class MetnorServiceImpl implements MentorService {
 		List<Mentor> mentorDetails = mentorRepo.findByEmpIdIn(mockdetails.getMentorId());
 		mock.setPanel(mentorDetails);
 		mock.setDate(mockdetails.getDateTime());
-		// mockRepo.save(mock);
 		return mock;
 	}
 
@@ -125,6 +124,28 @@ public class MetnorServiceImpl implements MentorService {
 			list.add(employeeStatusDTO);
 		});
 		return list;
+	}
+
+	@Override
+	public List<MentorBatchResDto> getAllBatch(Integer mentorId) {
+		Mentor mentor = mentorRepo.findById(mentorId).get();
+		List<BatchDetails> mentorBatchDetails = batchDetailsRepo.findByMentor(mentor);
+		List<MentorBatchResDto> arrayList = new ArrayList<>();
+		mentorBatchDetails.stream().forEach(m->{
+			MentorBatchResDto mentorBatchResDto = new MentorBatchResDto();
+			mentorBatchResDto.setBatchId(m.getId());
+			mentorBatchResDto.setBatchName(m.getBatchName());
+			mentorBatchResDto.setBatchNo(m.getNumber());
+			mentorBatchResDto.setBatchStrength(m.getEmployees().stream().count());
+			mentorBatchResDto.setStartDate(m.getStartDate());
+			mentorBatchResDto.setEndDate(m.getEndDate());
+			mentorBatchResDto.setStatus(m.getStatus());
+			List<String> list = new ArrayList<String>();
+			m.getTechnologies().stream().forEach(t->{list.add(t.getTech());});
+			mentorBatchResDto.setTechnologies(list);
+			arrayList.add(mentorBatchResDto);
+			});
+		return arrayList;
 	}
 
 	

@@ -3,12 +3,18 @@ package com.ajay.lms.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ajay.lms.dto.AddEmployeeDTO;
 import com.ajay.lms.pojo.Employee;
+import com.ajay.lms.pojo.EmployeeRequest;
 import com.ajay.lms.pojo.MockRatings;
+import com.ajay.lms.pojo.Technologies;
 import com.ajay.lms.repo.EmployeeRepo;
+import com.ajay.lms.repo.EmployeeRequestRepo;
+import com.ajay.lms.repo.TechnologiesRepo;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -16,12 +22,26 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	private EmployeeRepo empRepo;
 
+	@Autowired
+	private TechnologiesRepo technologiesRepo;
+	
+	@Autowired
+	private EmployeeRequestRepo requestRepo;
+	
 	@Override
-	public Employee addEmployee(Employee employee) {
+	public Employee addEmployee(AddEmployeeDTO employeedetails) {
+		List<Integer> tech = employeedetails.getTech();
+		List<Technologies> findAllById = technologiesRepo.findAllById(tech);
+		Employee employee = new Employee();
+		BeanUtils.copyProperties(employeedetails, employee);
+		employee.setTech(findAllById);
 		Employee save = empRepo.save(employee);
 		if (save == null) {
 			throw new RuntimeException();
 		}
+		EmployeeRequest employeeRequest = new EmployeeRequest();
+		employeeRequest.setEmpId(save.getId());
+		requestRepo.save(employeeRequest);
 		return save;
 	}
 
@@ -49,22 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee updateEmployeeDeatils(Employee employee, Integer id) {
 		Employee empDetails = empRepo.findById(id).get();
-		empDetails.setAddress(employee.getAddress());
-		empDetails.setBankDetails(employee.getBankDetails());
-		empDetails.setBloodGroup(employee.getBloodGroup());
-		empDetails.setContact(employee.getContact());
-		empDetails.setDesignation(employee.getDesignation());
-		empDetails.setEducationDetails(employee.getEducationDetails());
-		empDetails.setDob(employee.getDob());
-		empDetails.setDoj(employee.getDoj());
-		empDetails.setEmail(employee.getEmail());
-		empDetails.setEmpId(employee.getEmpId());
-		empDetails.setEmpName(employee.getEmpName());
-		empDetails.setExp(employee.getExp());
-		empDetails.setGender(employee.getGender());
-		empDetails.setInfo(employee.getInfo());
-		empDetails.setNationality(employee.getNationality());
-		empDetails.setTech(employee.getTech());
+		BeanUtils.copyProperties(employee, empDetails);
 		return empDetails;
 	}
 

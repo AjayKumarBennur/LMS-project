@@ -2,12 +2,13 @@ package com.ajay.lms.service;
 
 import java.util.List;
 
+import com.ajay.lms.dto.AddEmployeeDTO;
 import com.ajay.lms.pojo.Employee;
 import com.ajay.lms.pojo.MockRatings;
 
 public interface EmployeeService {
 	
-	public Employee addEmployee(Employee employee);
+	public Employee addEmployee(AddEmployeeDTO employee);
 
 	public List<MockRatings> getMockDetails(String name);
 
